@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+
 from loganalyzer.Parser import *
 from loganalyzer.Game import * 
 from loganalyzer.Analyzer import * 
@@ -7,7 +8,9 @@ from loganalyzer.Analyzer import *
 
 parser = Parser('Data/20190213193824-Namira_4-vs-CYRUS2018_312')
 
+
 game = Game(parser)
+
 
 analyzer = Analyzer(game)
 analyzer.analyze()
@@ -63,6 +66,7 @@ print("\nRight Team Regions Data")
 #Agent_regions   
 # owner_cycles    : cycles player is ball owner in the region
 # position_cycles : cycles player is in the region
+
 for agent in game.right_team.agents :
     for region in agent.regions:
         print(region.name+" "+"Agent number "+str(agent.number)+" owner_cycles: "+ str(region.owner_cycles) + "  "+ "position_cycles: "+str(region.position_cycles))
