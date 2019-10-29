@@ -1,10 +1,10 @@
 # Namira LogAnalyzer
-Python Script for parsing and analyzing agent2D socer simulation rcl and rcg logs. This project has been used in [NAMIRA TPAS](https://github.com/Farzin-Negahbani/Namira_TPAS)
+Python Script for parsing and analyzing agent2D soccer simulation rcl and rcg logs. This used in [NAMIRA TPAS](https://github.com/Farzin-Negahbani/Namira_TPAS)
 a Tournament Planning and Analyzer Software.
 
 ## Getting Started
 
-You just need python 3.x! and setuptools running on any Linux Base OS. 
+You just need python 3.x! and setuptools running on any OS.
 ### Pre Installation
 ##### Ubuntu
     sudo apt-get update
@@ -37,9 +37,10 @@ This analyzer could report many match facts, a list of them are as follows
   - Possesion on defined reigons
 - Position 
   - Cycles Player is in 9 determined Regions(A, B, ... I)
-- Distance Each Player Moved
-- Stamina Each Player Used
-- Stamina per Distance for each player
+- Players moving distance
+- Players stamina usage
+- Players stamina used per distance
+- Game heatmap of teams
 - Kick count
 - Tackle count
 - say count
@@ -58,7 +59,7 @@ This analyzer could report many match facts, a list of them are as follows
     left_team_pass = analyzer.pass_l 
     left_team_in_target_shoot = analyzer.in_target_shoot_l 
     left_team_agent_1 = game.left_team.agents[0].data 
-## Authors
-
+## Question
+Any questions or suggestions please feel free to contact :
 * **[Farzin Negahbani](https://github.com/Farzin-Negahbani)** 
 * **[Shahryar Bahmai](https://github.com/shahryarbhm)**  
