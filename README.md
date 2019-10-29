@@ -20,24 +20,24 @@ This analyzer could report many match facts, a list of them are as follows
 - Pass count
   - Pass in Width 
   - Pass in Length
-  - Pass Counting in 9 determined Regions(A, B, ... I)
-  - Pass Acuracy 
+  - Pass Counting in 9 determined regions (A, B, ... I)
+  - Pass Accuracy 
   - Pass Interception
   - True Pass 
 - Shoot count
   - Shoot in Width 
   - Shoot in Length
-  - Shoot Counting in 9 determined Regions(A, B, ... I)
+  - Shoot Counting in 9 determined regions (A, B, ... I)
   - On Target Shoot
   - Off Target Shoot
-  - Shoot Acuracy 
+  - Shoot Accuracy 
 - Possession 
-  - Possession in 9 determined Regions(A, B, ... I)
-  - Possession in 9 determined Regions for each player(A, B, ... I)
-  - Possesion on defined reigons
+  - Possession in 9 determined regions (A, B, ... I)
+  - Possession in 9 determined regions for each player (A, B, ... I)
+  - Possession on any custom region
 - Position 
-  - Cycles Player is in 9 determined Regions(A, B, ... I)
-- Players moving distance
+  - Cycles players are in 9 determined regions (A, B, ... I)
+- Players moved distance
 - Players stamina usage
 - Players stamina used per distance
 - Game heatmap of teams
@@ -59,7 +59,7 @@ This analyzer could report many match facts, a list of them are as follows
     left_team_pass = analyzer.pass_l 
     left_team_in_target_shoot = analyzer.in_target_shoot_l 
     left_team_agent_1 = game.left_team.agents[0].data 
-## Question
+## Questions
 Any questions or suggestions please feel free to contact :
-* **[Farzin Negahbani](https://github.com/Farzin-Negahbani)** 
-* **[Shahryar Bahmai](https://github.com/shahryarbhm)**  
+* **[Farzin Negahbani](mailto: farzin.negahbani@gmail.com)** 
+* **[Shahryar Bahmai](mailto: shahryarbahmeie@gmail.com)**  
