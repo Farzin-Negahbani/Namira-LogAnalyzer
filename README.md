@@ -63,5 +63,5 @@ This analyzer can report following match facts and informations:
     left_team_agent_1 = game.left_team.agents[0].data 
 ## Questions
 Any questions or suggestions please feel free to contact or open an issue.
-* **[Farzin Negahbani](farzin.negahbani@gmail.com)** 
-* **[Shahryar Bahmai](shahryarbahmeie@gmail.com)**  
+* **[Farzin Negahbani](mailto: farzin.negahbani@gmail.com)** 
+* **[Shahryar Bahmai](mailto: shahryarbahmeie@gmail.com)**  
