@@ -30,26 +30,29 @@ This analyzer can report following match facts and information:
   - Pass Interception
   - Pass Accuracy 
 - Shoot
-  - In Width 
-  - In Length
-  - In 9 determined regions (A, B, ... I)
-  - On Target Shoot
-  - Off Target Shoot
-- Shoot Accuracy 
+  - Shoot Counting 
+    - In Width 
+    - In Length
+    - In 9 determined regions (A, B, ... I)
+    - On Target Shoot
+    - Off Target Shoot
+  - Shoot Accuracy 
 - Possession 
-  - Possession in 9 determined regions (A, B, ... I)
+  - Possession in 9 determined regions (A, B, ... I) for the teams
   - Possession in 9 determined regions for each player (A, B, ... I)
-  - Possession on any custom region
+  - Possession of any team or player in any custom region
 - Position 
-  - Cycles players are in 9 determined regions (A, B, ... I)
-- Players moved distance
-- Players stamina usage
-- Players stamina used per distance
-- Game heatmap of teams
+  - Cycles each player is in 9 determined regions (A, B, ... I)
+  - Cycles each player is in any of custom regions (A, B, ... I)
+- Players' moved distance
+- Players' stamina usage
+- Players' stamina used per distance
+- Game Heatmap of teams
 - Kick count
 - Tackle count
-- say count
+- Say count
 ### How to Use
+To check how to retrieve data, take a look at Testcase.py file. 
 #### As a Script
     loganalyzer --path <log file without .rcl or .rcg >
 #### As a Module
