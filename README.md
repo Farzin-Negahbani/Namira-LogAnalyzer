@@ -17,7 +17,7 @@ You just need python 3.x! and setuptools running on any OS.
     python3 ./setup.py install
 ### Uninstall
     python ./setup.py uninstall 
-### How To Use?
+
 ## Capabilities of this analyzer
 
 This analyzer can report following match facts and information:
