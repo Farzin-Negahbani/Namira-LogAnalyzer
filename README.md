@@ -16,25 +16,26 @@ You just need python 3.x! and setuptools running on any OS.
 ### Installation
     python3 ./setup.py install
 ### Uninstall
-    python ./setup.py uninstall -->
+    python ./setup.py uninstall 
 ### How To Use?
 ## Capabilities of this analyzer
 
 This analyzer can report following match facts and information:
-- Number of Passes
+- Pass
+   - Pass Counting 
+     - In Width 
+     - In Length
+     - In 9 determined regions (A, B, ... I)  
+     - True Passes 
+  - Pass Interception
+  - Pass Accuracy 
+- Shoot
   - In Width 
   - In Length
-  - In 9 determined regions (A, B, ... I)  
-  - True Pass 
-  - Pass Interception
-- Pass Accuracy 
-- Shoot count
-  - Shoot in Width 
-  - Shoot in Length
-  - Shoot Counting in 9 determined regions (A, B, ... I)
+  - In 9 determined regions (A, B, ... I)
   - On Target Shoot
   - Off Target Shoot
-  - Shoot Accuracy 
+- Shoot Accuracy 
 - Possession 
   - Possession in 9 determined regions (A, B, ... I)
   - Possession in 9 determined regions for each player (A, B, ... I)
