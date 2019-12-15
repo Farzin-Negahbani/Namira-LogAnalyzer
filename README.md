@@ -34,8 +34,8 @@ This analyzer can report following match facts and information:
     - In Width 
     - In Length
     - In 9 determined regions (A, B, ... I)
-    - On Target Shoot
-    - Off Target Shoot
+    - On Target Shoots
+    - Off Target Shoots
   - Shoot Accuracy 
 - Possession 
   - Possession in 9 determined regions (A, B, ... I) for the teams
@@ -52,7 +52,7 @@ This analyzer can report following match facts and information:
 - Tackle count
 - Say count
 ### How to Use
-To check how to retrieve data, take a look at Testcase.py file. 
+To check how to retrieve data, take a look at **Testcase.py** file. 
 #### As a Script
     loganalyzer --path <log file without .rcl or .rcg >
 #### As a Module
