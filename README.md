@@ -68,6 +68,6 @@ To check how to retrieve data, take a look at **Testcase.py** file.
     left_team_in_target_shoot = analyzer.in_target_shoot_l 
     left_team_agent_1 = game.left_team.agents[0].data 
 ## Questions
-For any questions or suggestions please feel free to contact or open an issue.
+For any question or suggestions, please feel free to contact or open an issue.
 * **[Farzin Negahbani](mailto:farzin.negahbani@gmail.com)** 
 * **[Shahryar Bahmai](mailto:shahryarbahmeie@gmail.com)**  
