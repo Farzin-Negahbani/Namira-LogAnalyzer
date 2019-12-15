@@ -1,8 +1,10 @@
 # Namira LogAnalyzer
-Python Script for parsing and analyzing agent2D soccer simulation rcl and rcg logs. This used in [NAMIRA TPAS](https://github.com/Farzin-Negahbani/Namira_TPAS)
+Python Script for parsing and analyzing agent2D soccer simulation rcl and rcg log files. This has been used in [NAMIRA TPAS](https://github.com/Farzin-Negahbani/Namira_TPAS),
 a Tournament Planning and Analyzer Software.
-## Why this is useful
-Firstly, if you want to have quantative data about your team performance on different matches. Secondly, if you are trying to evaluate different ability of your team by running hundreds of matches and you need to have report of these matches. Above all, if you want o apply some machine learning algorithms this would be usefull in extracting data because you can get the results as a python object which can be used directly on another script or decide to write them in a file! 
+## Why is this useful?
+- Generating comprehensive data about your team performance on different matches. 
+- Evaluating different capabilities of your team .
+- Using extracted data to train machine learning algorithm.
 
 ## Getting Started
 
@@ -13,19 +15,19 @@ You just need python 3.x! and setuptools running on any OS.
     sudo apt-get install python3 python3-setuptools python3-numpy python3-matplotlib
 ### Installation
     python3 ./setup.py install
-<!-- ### Uninstallation
+### Uninstall
     python ./setup.py uninstall -->
 ### How To Use?
 ## Capabilities of this analyzer
 
-This analyzer can report following match facts and informations:
-- Pass count
-  - Pass in Width 
-  - Pass in Length
-  - Pass Counting in 9 determined regions (A, B, ... I)
-  - Pass Accuracy 
-  - Pass Interception
+This analyzer can report following match facts and information:
+- Number of Passes
+  - In Width 
+  - In Length
+  - In 9 determined regions (A, B, ... I)  
   - True Pass 
+  - Pass Interception
+- Pass Accuracy 
 - Shoot count
   - Shoot in Width 
   - Shoot in Length
