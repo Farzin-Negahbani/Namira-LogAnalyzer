@@ -69,8 +69,8 @@ To check how to retrieve data, take a look at **Testcase.py** file.
     left_team_agent_1 = game.left_team.agents[0].data 
 ## Publication
 If you found this work useful please give credits to the authors by citing:
-- Asali, E., Negahbani, F., Tafazzol, S., Maghareh, M.S., Bahmeie, S., Barazandeh, S., Mirian, S., & Moshkelgosha, M. (2018). Namira Soccer 2 D Simulation Team Description Paper 2018.[PDF](https://archive.robocup.info/Soccer/Simulation/2D/TDPs/RoboCup/2018/Namira_SS2D_RC2018_TDP.pdf)
-- Asali, E., Moravej, A., Akbarpoor, S., Asali, O., Katebzadeh, M., Tafazol, S., ... & Haghighi, A. B. (2017). Persian Gulf Soccer 2D Simulation Team Description Paper 2017. In The 21th annual RoboCup International Symposium, Japan, Nagoya.[PDF](https://www.robocup2017.org/file/symposium/soccer_sim_2D/TDP_PersianGulf.pdf)
+- Asali, E., Negahbani, F., Tafazzol, S., Maghareh, M.S., Bahmeie, S., Barazandeh, S., Mirian, S., & Moshkelgosha, M. (2018). Namira Soccer 2 D Simulation Team Description Paper 2018. [PDF](https://archive.robocup.info/Soccer/Simulation/2D/TDPs/RoboCup/2018/Namira_SS2D_RC2018_TDP.pdf)
+- Asali, E., Moravej, A., Akbarpoor, S., Asali, O., Katebzadeh, M., Tafazol, S., ... & Haghighi, A. B. (2017). Persian Gulf Soccer 2D Simulation Team Description Paper 2017. In The 21th annual RoboCup International Symposium, Japan, Nagoya.  [PDF](https://www.robocup2017.org/file/symposium/soccer_sim_2D/TDP_PersianGulf.pdf)
 ## Questions
 For any question or suggestions, please feel free to contact us or open an issue.
 * **[Farzin Negahbani](mailto:farzin.negahbani@gmail.com)** 
