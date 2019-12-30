@@ -1,106 +1,128 @@
 import sys
 import os
 import argparse
+import json
 from loganalyzer.Game import *
 from loganalyzer.Parser import *
-from loganalyzer.Analyzer import * 
+from loganalyzer.Analyzer import *
 # from Parser import *
-# from Game import * 
-# from Analyzer import * 
+# from Game import *
+# from Analyzer import *
+
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--path", help="Input file path", required=True, dest='path')
-    parser.add_argument("--save_path", help="Output saving path.", dest='save_path')
+    parser.add_argument("--path", help="Input file path",
+                        required=True, dest='path')
+    parser.add_argument(
+        "--save_path", help="Output saving path.", dest='save_path')
+    parser.add_argument("--heatmap", help="Show Heatmap",
+                        dest='heat_map')
     parser.add_argument('--version', action='version', version='1.0.0')
     args = parser.parse_args()
     if args.save_path is None:
-        args.save_path = args.path+".log"
+        args.save_path = args.path+".log.json"
     return args
-    
-def write_to_file(save_path,analyzer):
-    f = open(save_path,'w')
-    #right TEAM
-    f.writelines("Right Team"+os.linesep)
-    f.writelines(analyzer.game.right_team.name+os.linesep)
-    f.writelines("True Pass:"+str(analyzer.pass_r )+os.linesep)
-    f.writelines("Intercept:"+str(analyzer.intercept_r )+os.linesep)
-    f.writelines("on_target_shoot:"+str(analyzer.on_target_shoot_r )+os.linesep)
-    f.writelines("off_target_shoot:"+str(analyzer.off_target_shoot_r )+os.linesep)
-    f.writelines("Game result :"+analyzer.status_r+os.linesep)
-    f.writelines("Goals :"+str(analyzer.game.right_goal)+os.linesep)
-    f.writelines("True Pass:"+str(analyzer.pass_r )+os.linesep)
-    f.writelines("Wrong Pass:"+str(analyzer.intercept_l )+os.linesep)
-    f.writelines("Pass in Lenght:"+str(analyzer.pass_in_length_r )+os.linesep)
-    f.writelines("Pass in Width:"+str(analyzer.pass_in_width_r )+os.linesep)
-    f.writelines("Pass Accuracy:"+str(analyzer.pass_accuracy_r)+os.linesep)
-    f.writelines("on_target_shoot:"+str(analyzer.on_target_shoot_r)+os.linesep)
-    f.writelines("off_target_shoot:"+str(analyzer.off_target_shoot_r )+os.linesep)
-    f.writelines("Shoot in Lenght:"+str(analyzer.shoot_in_length_r )+os.linesep)
-    f.writelines("Shoot in Width:"+str(analyzer.shoot_in_width_r )+os.linesep)
-    f.writelines("Shoot Accuracy:"+str(analyzer.shoot_accuracy_r)+os.linesep)
-    f.writelines("Possession:"+str(analyzer.possession_r)+os.linesep)
-    f.writelines("Stamina Usage:"+str(analyzer.used_stamina_agents_r )+os.linesep)
-    f.writelines("moved Distance:"+str(analyzer.team_moved_distance_r )+os.linesep)
-    f.writelines("Average Distance 10 Player: "+str(analyzer.average_distance_10p_r)+os.linesep)
-    f.writelines("Average Stamina 10 Player: "+str(analyzer.average_stamina_10p_r)+os.linesep)
-    f.writelines("Average Stamina Per distance 10 Player: "+str(analyzer.av_st_per_dist_10p_r )+os.linesep)
-    f.writelines("Stamina per Distance:"+str(analyzer.used_per_distance_r )+"\n"+"\n"+os.linesep)
-    #left TEAM
-    f.writelines(os.linesep)
-    f.writelines("Left Team"+os.linesep)
-    f.writelines(analyzer.game.left_team.name+os.linesep)
-    f.writelines("True Pass:"+str(analyzer.pass_l )+os.linesep)
-    f.writelines("Intercept:"+str(analyzer.intercept_l )+os.linesep)
-    f.writelines("on_target_shoot:"+str(analyzer.on_target_shoot_l )+os.linesep)
-    f.writelines("off_target_shoot:"+str(analyzer.off_target_shoot_l )+os.linesep)
-    f.writelines("Game result :"+analyzer.status_l+os.linesep)
-    f.writelines("Goals :"+str(analyzer.game.left_goal)+os.linesep)
-    f.writelines("Wrong Pass:"+str(analyzer.intercept_r )+os.linesep)
-    f.writelines("Pass in Lenght:"+str(analyzer.pass_in_length_l )+os.linesep)
-    f.writelines("Pass in Width:"+str(analyzer.pass_in_width_l )+os.linesep)
-    f.writelines("Pass Accuracy:"+str(analyzer.pass_accuracy_l)+os.linesep)
-    f.writelines("on_target_shoot:"+str(analyzer.on_target_shoot_l )+os.linesep)
-    f.writelines("off_target_shoot:"+str(analyzer.off_target_shoot_l )+os.linesep)
-    f.writelines("Shoot in Lenght:"+str(analyzer.shoot_in_length_l )+os.linesep)
-    f.writelines("Shoot in Width:"+str(analyzer.shoot_in_width_l )+os.linesep)
-    f.writelines("Shoot Accuracy:"+str(analyzer.shoot_accuracy_l)+os.linesep)
-    f.writelines("Possession:"+str(analyzer.possession_l)+os.linesep)
-    f.writelines("Stamina Usage:"+str(analyzer.used_stamina_agents_l )+os.linesep)
-    f.writelines("moved Distance:"+str(analyzer.team_moved_distance_l )+os.linesep)
-    f.writelines("Average Distance 10 Player: "+str(analyzer.average_distance_10p_l)+os.linesep)
-    f.writelines("Average Stamina 10 Player: "+str(analyzer.average_stamina_10p_l)+os.linesep)
-    f.writelines("Average Stamina Per distance 10 Player: "+str(analyzer.av_st_per_dist_10p_l )+os.linesep)
-    f.writelines("Stamina per Distance:"+str(analyzer.used_per_distance_l )+os.linesep)
 
+
+def write_to_file(save_path, analyzer):
+    # right TEAM
+    right_team_data = {
+        "Right Team": analyzer.game.right_team.name,
+        "True Pass:": analyzer.pass_r,
+        "Intercept:": analyzer.intercept_r,
+        "on_target_shoot:": analyzer.on_target_shoot_r,
+        "off_targ": analyzer.off_target_shoot_r,
+        "Goals :": analyzer.game.right_goal,
+        "Wrong Pass:": analyzer.intercept_l,
+        "Pass in Lenght:": analyzer.pass_in_length_r,
+        "Pass in Width:": analyzer.pass_in_width_r,
+        "Pass Accuracy:": analyzer.pass_accuracy_r,
+        "on_target_shoot:": analyzer.on_target_shoot_r,
+        "off_targ": analyzer.off_target_shoot_r,
+        "Shoot in Lenght": analyzer.shoot_in_length_r,
+        "Shoot in Width": analyzer.shoot_in_width_r,
+        "Shoot Accuracy": analyzer.shoot_accuracy_r,
+        "Possession": analyzer.possession_r,
+        "Stamina": analyzer.used_stamina_agents_r,
+        "moved": analyzer.team_moved_distance_r,
+        "Average Distance 10": analyzer.average_distance_10p_r,
+        "Average Stamina 10": analyzer.average_stamina_10p_r,
+        "Average Stamina Per distance 10": analyzer.av_st_per_dist_10p_r,
+        "Stamina per ": analyzer.used_per_distance_r
+    }
+    # left TEAM
+    left_team_data = {
+        "Left Team": analyzer.game.left_team.name,
+        "True Pass:": analyzer.pass_l,
+        "Intercept:": analyzer.intercept_l,
+        "on_target_shoot:": analyzer.on_target_shoot_l,
+        "off_targ": analyzer.off_target_shoot_l,
+        "Goals :": analyzer.game.left_goal,
+        "Wrong Pass:": analyzer.intercept_r,
+        "Pass in Lenght:": analyzer.pass_in_length_l,
+        "Pass in Width:": analyzer.pass_in_width_l,
+        "Pass Accuracy:": analyzer.pass_accuracy_l,
+        "on_target_shoot:": analyzer.on_target_shoot_l,
+        "off_targ": analyzer.off_target_shoot_l,
+        "Shoot in Lenght": analyzer.shoot_in_length_l,
+        "Shoot in Width": analyzer.shoot_in_width_l,
+        "Shoot Accuracy": analyzer.shoot_accuracy_l,
+        "Possession": analyzer.possession_l,
+        "Stamina": analyzer.used_stamina_agents_l,
+        "moved": analyzer.team_moved_distance_l,
+        "Average Distance 10": analyzer.average_distance_10p_l,
+        "Average Stamina 10": analyzer.average_stamina_10p_l,
+        "Average Stamina Per distance 10": analyzer.av_st_per_dist_10p_l,
+        "Stamina per ": analyzer.used_per_distance_r
+    }
+
+    ball_in_region_percentage = {}
     for region in analyzer.regions:
-        f.writelines("Ball in Region Percentage"+" "+str(region.name)+" "+str(region.ball_in_region_cycles)+os.linesep)
+        ball_in_region_percentage[region.name] = region.ball_in_region_cycles
 
-    f.writelines(os.linesep)
-    f.writelines("Right Team Regions Data"+os.linesep)
-    #Agent_regions   
+    # Agent_regions
     # owner_cycles    : cycles player is ball owner in the region
     # position_cycles : cycles player is in the region
-    for agent in analyzer.game.right_team.agents :
+    right_team_regions_data = {}
+    for agent in analyzer.game.right_team.agents:
+        agent_data = {}
         for region in agent.regions:
-            f.writelines(region.name+" "+"Agent number "+str(agent.number)+" owner_cycles: "+ str(region.owner_cycles) + "  "+ "position_cycles: "+str(region.position_cycles)+os.linesep)
-    f.writelines(os.linesep)
-    f.writelines("Left Team Regions Data"+os.linesep)
-    for agent in analyzer.game.left_team.agents :
+            agent_data[region.name] = {
+                "ownerCycles": region.owner_cycles, "positionCycles": region.position_cycles}
+        right_team_regions_data[agent.number] = agent_data
+    left_team_regions_data = {}
+    for agent in analyzer.game.left_team.agents:
+        agent_data = {}
         for region in agent.regions:
-            f.writelines(region.name+" "+"Agent number "+str(agent.number)+" owner_cycles: "+ str(region.owner_cycles) + "  "+ "position_cycles: "+str(region.position_cycles)+os.linesep)
-    f.close()
+            agent_data[region.name] = {
+                "ownerCycles": region.owner_cycles, "positionCycles": region.position_cycles}
+        left_team_regions_data[agent.number] = agent_data
+    right_team_data['regionData'] = right_team_regions_data
+    left_team_data['regionData'] = left_team_regions_data
+
+    data = {
+        "Game Result": {analyzer.game.left_team.name: analyzer.game.left_goal,
+                        analyzer.game.right_team.name: analyzer.game.right_goal},
+        "right_team": right_team_data,
+        "left_team": left_team_data
+    }
+
+    with open(save_path, 'w') as outfile:
+        json.dump(data, outfile)
+
+
 def main():
-    args=parse_args()
+    args = parse_args()
     path = args.path
     save_path = args.save_path
     parser = Parser(path)
-    game = Game(parser) 
+    game = Game(parser)
     analyzer = Analyzer(game)
     analyzer.analyze()
-    write_to_file(save_path,analyzer)
+    write_to_file(save_path, analyzer)
 
-    #Drawing Heatmap of the game      
-    heatmap = analyzer.draw_heatmap(right_team = True, Left_team= True)
+    # Drawing Heatmap of the game
 
-
+    if args.heat_map is not None:
+        analyzer.draw_heatmap(right_team=True, left_team=True)

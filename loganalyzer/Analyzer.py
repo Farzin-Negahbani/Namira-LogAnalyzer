@@ -1,134 +1,122 @@
 import math
 
+
 class Region:
-    
+
     def __init__(self, top_left, bottom_right, name="Unnamed"):
-        
-        self.top_left              = top_left
-        self.bottom_right          = bottom_right
-        self.name                  = name
+
+        self.top_left = top_left
+        self.bottom_right = bottom_right
+        self.name = name
         self.ball_in_region_cycles = 0
-        
-    def in_region(self, x,y): 
+
+    def in_region(self, x, y):
         '''check if a point (x,y) l  ies in a rectangle
         with upper left corner (x1,y1) and bottom right corner (x2,y2)'''
-        if (x > self.top_left[0] and x < self.bottom_right[0] and y > self.top_left[1] and y < self.bottom_right[1]) : 
+        if (x > self.top_left[0] and x < self.bottom_right[0] and y > self.top_left[1] and y < self.bottom_right[1]):
             return True
-        else : 
+        else:
             return False
-    
+
+
 class Analyzer:
 
-
     def __init__(self, game):
-        
-        self.game                  = game
-        self.play_on_cycles        = game.get_play_on_cycles()
-        self.pass_status           = 0 # 0 --> no kick,  1 --> one kicker detected
-        self.shoot_status          = 0
-        self.pass_last_kicker      = -1
-        self.pass_last_kick_cycle  = -1
-        self.i                     = 0
-        self.ball_owner            = 0
-        
-        #Special Regions
-        self.regions               = []
-        self.regions.append(Region((-52.5,-34),(-17.5,-11),"A"))
-        self.regions.append(Region((-52.5,-11),(-17.5,11),"B"))
-        self.regions.append(Region((-52.5,11),(-17.5,34),"C"))
-        self.regions.append(Region((-17.5,-34),(17.5,-11),"D"))
-        self.regions.append(Region((-17.5,-11),(17.5,11),"E"))
-        self.regions.append(Region((-17.5,11),(17.5,34),"F"))
-        self.regions.append(Region((17.5,-34),(52.5,-11),"G"))
-        self.regions.append(Region((17.5,-11),(52.5,11),"H"))
-        self.regions.append(Region((17.5,11),(52.5,34),"I"))
 
-        #Right TEAM
-        self.status_r              = 0  #Winner' 'Loser' 'Draw'
-        self.pass_r                = 0
-        self.intercept_r           = 0
-        self.pass_in_length_r      = 0
-        self.pass_in_width_r       = 0
-        self.pass_accuracy_r       = 0
-        self.shoot_in_length_r     = 0
-        self.shoot_in_width_r      = 0
-        self.on_target_shoot_r     = 0
-        self.off_target_shoot_r    = 0
-        self.shoot_accuracy_r      = 0
-        self.possession_r          = 0
-        self.used_stamina_agents_r = []  
+        self.game = game
+        self.play_on_cycles = game.get_play_on_cycles()
+        self.pass_status = 0  # 0 --> no kick,  1 --> one kicker detected
+        self.shoot_status = 0
+        self.pass_last_kicker = -1
+        self.pass_last_kick_cycle = -1
+        self.i = 0
+        self.ball_owner = 0
+
+        # Special Regions
+        self.regions = []
+        self.regions.append(Region((-52.5, -34), (-17.5, -11), "A"))
+        self.regions.append(Region((-52.5, -11), (-17.5, 11), "B"))
+        self.regions.append(Region((-52.5, 11), (-17.5, 34), "C"))
+        self.regions.append(Region((-17.5, -34), (17.5, -11), "D"))
+        self.regions.append(Region((-17.5, -11), (17.5, 11), "E"))
+        self.regions.append(Region((-17.5, 11), (17.5, 34), "F"))
+        self.regions.append(Region((17.5, -34), (52.5, -11), "G"))
+        self.regions.append(Region((17.5, -11), (52.5, 11), "H"))
+        self.regions.append(Region((17.5, 11), (52.5, 34), "I"))
+
+        # Right TEAM
+        self.status_r = 0  # Winner' 'Loser' 'Draw'
+        self.pass_r = 0
+        self.intercept_r = 0
+        self.pass_in_length_r = 0
+        self.pass_in_width_r = 0
+        self.pass_accuracy_r = 0
+        self.shoot_in_length_r = 0
+        self.shoot_in_width_r = 0
+        self.on_target_shoot_r = 0
+        self.off_target_shoot_r = 0
+        self.shoot_accuracy_r = 0
+        self.possession_r = 0
+        self.used_stamina_agents_r = []
         self.team_moved_distance_r = []
-        self.used_per_distance_r   = []
-        self.average_stamina_10p_r = 0 
-        self.average_distance_10p_r= 0 
-        self.av_st_per_dist_10p_r  = 0
-        
-        #Left TEAM
-        self.status_l              = 0  #Winner' 'Loser' 'Draw'
-        self.pass_l                = 0
-        self.intercept_l           = 0
-        self.pass_in_length_l      = 0
-        self.pass_in_width_l       = 0
-        self.pass_accuracy_l       = 0
-        self.shoot_in_length_l     = 0
-        self.shoot_in_width_l      = 0
-        self.on_target_shoot_l     = 0
-        self.off_target_shoot_l    = 0
-        self.shoot_accuracy_l      = 0
-        self.possession_l          = 0
+        self.used_per_distance_r = []
+        self.average_stamina_10p_r = 0
+        self.average_distance_10p_r = 0
+        self.av_st_per_dist_10p_r = 0
+
+        # Left TEAM
+        self.status_l = 0  # Winner' 'Loser' 'Draw'
+        self.pass_l = 0
+        self.intercept_l = 0
+        self.pass_in_length_l = 0
+        self.pass_in_width_l = 0
+        self.pass_accuracy_l = 0
+        self.shoot_in_length_l = 0
+        self.shoot_in_width_l = 0
+        self.on_target_shoot_l = 0
+        self.off_target_shoot_l = 0
+        self.shoot_accuracy_l = 0
+        self.possession_l = 0
         self.used_stamina_agents_l = []
         self.team_moved_distance_l = []
-        self.used_per_distance_l   = []
-        self.average_stamina_10p_l = 0 
-        self.average_distance_10p_l= 0 
-        self.av_st_per_dist_10p_l  = 0
+        self.used_per_distance_l = []
+        self.average_stamina_10p_l = 0
+        self.average_distance_10p_l = 0
+        self.av_st_per_dist_10p_l = 0
 
-    def draw_heatmap(self, right_team = True, Left_team= True):
+    def draw_heatmap(self, right_team=False, left_team=True):
         import numpy as np
-        import matplotlib.pyplot as plt 
-        
-        world = np.zeros((105,70))
-        
-        if(right_team or Left_team):
-            #for cycle in self.play_on_cycles: 
-            for cycle in list(range(1,2999))+list(range(3001,6000)):    
-                if(right_team):
-                    for agent in self.game.right_team.agents:
-                        
-                        if(agent.number != 1):
-                            x = int(round(agent.data[cycle]['x'],1))+52
-                            y = int(round(agent.data[cycle]['y'],1))+33
-                            
-                            world[x][y] += 4
-                            world[x][y+1] += 1
-                            world[x][y-1] += 1
-                            world[x+1][y] += 1
-                            world[x+1][y+1] += 1
-                            world[x+1][y-1] += 1
-                            world[x-1][y] += 1
-                            world[x-1][y+1] += 1
-                            world[x-1][y-1] += 1
-                
-                if(Left_team):
-                    for agent in self.game.left_team.agents:
-                        if(agent.number != 1):
-                            x = int(round(agent.data[cycle]['x'],1))
-                            y = int(round(agent.data[cycle]['y'],1))
-                            world[x][y] += 4
-                            world[x][y+1] += 1
-                            world[x][y-1] += 1
-                            world[x+1][y] += 1
-                            world[x+1][y+1] += 1
-                            world[x+1][y-1] += 1
-                            world[x-1][y] += 1
-                            world[x-1][y+1] += 1
-                            world[x-1][y-1] += 1
-                           
-        plt.imshow(np.fliplr(world).T,interpolation='gaussian')    
-        plt.colorbar()
-    
-    
-    def line_intersection(line1, line2):
+        import matplotlib.pyplot as plt
+
+        world = np.zeros((105, 75))
+
+        if(right_team ):
+            team =self.game.right_team.agents
+        elif(left_team):
+            team =self.game.left_team.agents
+        # for cycle in self.play_on_cycles:
+        for cycle in self.play_on_cycles:
+            for agent in team:
+                if(agent.number != 1):
+                    x = int(round(agent.data[cycle]['x'], 1))+52
+                    y = int(round(agent.data[cycle]['y'], 1))+33
+                    for i in range(-4,5):
+                        for j in range(-4,5):
+                            world[x+i][y+j] += 5 - abs(j) 
+        fig, ax = plt.subplots()
+        ax.set_xticks(np.arange(len([])))
+        ax.set_yticks(np.arange(len([])))
+        ax.set_xticklabels([])
+        ax.set_yticklabels([])
+        cbarlabel="Relative Frequency"
+
+        im = ax.imshow(np.fliplr(world).T, interpolation='gaussian')
+        cbar = ax.figure.colorbar(im, ax=ax )
+        cbar.ax.set_ylabel(cbarlabel, rotation=-90, va="bottom")
+        plt.show()
+
+
+    def line_intersection(self,line1, line2):
         def det(a, b):
             return a[0] * b[1] - a[1] * b[0]
         
@@ -249,9 +237,9 @@ class Analyzer:
                 
             if(self.game.get_last_kickers(key)[0].team.name == self.game.left_team.name ):
                 self.possession_l +=1
-                #print("Left Team is ball Owner cycle ",key)
+                # print("Left Team is ball Owner cycle ",key)
             else:
-                #print("Right Team is ball Owner cycle ",key)
+                # print("Right Team is ball Owner cycle ",key)
                 self.possession_r +=1
 
         
@@ -267,14 +255,14 @@ class Analyzer:
                     ball1 = (self.game.ball_pos[key-1]['x'], self.game.ball_pos[key-1]['y'])
                     ball2 = (self.game.ball_pos[key]['x'], self.game.ball_pos[key]['y'])
                     if ball1[0]-ball2[0]>0:
-                        (x,y) = Analyzer.line_intersection((ball1,ball2), ((-52.6,1),(-52.6,0)) )
+                        (x,y) = self.line_intersection((ball1,ball2) , ((-52.6,1),(-52.6,0)) )
                             
                         if(abs(y)<7.5 ):
                             if(abs(y-ball1[1])> abs(x-ball1[0])):
                                 self.shoot_in_width_r +=1
                             else:
                                 self.shoot_in_length_r +=1
-                            #print( "On-Target Shoot", key , kickers[0].number , self.game.right_team.name)
+                            # print( "On-Target Shoot", key , kickers[0].number , self.game.right_team.name)
                             self.on_target_shoot_r +=1
                             self.shoot_status       =1
 
@@ -283,7 +271,7 @@ class Analyzer:
                                 self.shoot_in_width_r +=1
                             else:
                                 self.shoot_in_length_r +=1
-                            #print( "Off-Target Shoot", key ,kickers[0].number , self.game.right_team.name)
+                            # print( "Off-Target Shoot", key ,kickers[0].number , self.game.right_team.name)
                             self.off_target_shoot_r +=1
                             self.shoot_status       =1
                                                         
@@ -292,14 +280,14 @@ class Analyzer:
                     ball1= (self.game.ball_pos[key-1]['x'], self.game.ball_pos[key-1]['y'])
                     ball2= (self.game.ball_pos[key]['x'], self.game.ball_pos[key]['y'])
                     if ball2[0]-ball1[0]>0:
-                        (x,y) = Analyzer.line_intersection( (ball1,ball2), ((52.6,1),(52.6,0)) )
+                        (x,y) = self.line_intersection( (ball1,ball2), ((52.6,1),(52.6,0)) )
     
                         if(abs(y)<7.5 ):
                             if(abs(y-ball1[1])> abs(x-ball1[0])):
                                 self.shoot_in_width_l +=1
                             else:
                                 self.shoot_in_length_l +=1  
-                            #print( "On-Target Shoot",key, kickers[0].number , self.game.left_team.name)
+                            # print( "On-Target Shoot",key, kickers[0].number , self.game.left_team.name)
                             self.on_target_shoot_l +=1
                             self.shoot_status       =1
                             
@@ -308,7 +296,7 @@ class Analyzer:
                                 self.shoot_in_width_l +=1
                             else:
                                 self.shoot_in_length_l +=1  
-                            #print( "Off-Target Shooet",key, kickers[0].number , self.game.left_team.name)
+                            # print( "Off-Target Shooet",key, kickers[0].number , self.game.left_team.name)
                             self.off_target_shoot_l+=1
                             self.shoot_status       =1
 

@@ -1,3 +1,0 @@
-[console_scripts]
-loganalyzer = loganalyzer.__main__:main
-
