@@ -75,3 +75,4 @@ If you found this work useful please give credits to the authors by citing:
 For any question or suggestions, please feel free to contact us or open an issue.
 * **[Farzin Negahbani](mailto:farzin.negahbani@gmail.com)** 
 * **[Shahryar Bahmai](mailto:shahryarbahmeie@gmail.com)**  
+* **[Ehsan Asali](mailto:ehsanasali@uga.edu)**  
