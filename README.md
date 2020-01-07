@@ -32,7 +32,7 @@ You just need python 3.x! and setuptools running on any OS.
 
 ### Uninstall
 
-    python3 ./setup.py uninstall
+    pip uninstall loganalyzer
 
 ## Capabilities of this analyzer
 

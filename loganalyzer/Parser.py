@@ -4,8 +4,8 @@ class Parser:
         self.path = path
         self.set_data_rcg()
         self.set_data_rcl()
-        self.right_team
-        self.left_team
+        self.right_team = ''
+        self.left_team = ''
 
     def set_data_rcg(self):
         try:

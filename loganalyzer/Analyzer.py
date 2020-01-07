@@ -88,7 +88,7 @@ class Analyzer:
         import numpy as np
         import matplotlib.pyplot as plt
 
-        world = np.zeros((105, 75))
+        world = np.zeros((110, 75))
 
         if(right_team ):
             team =self.game.right_team.agents
@@ -102,7 +102,10 @@ class Analyzer:
                     y = int(round(agent.data[cycle]['y'], 1))+33
                     for i in range(-4,5):
                         for j in range(-4,5):
-                            world[x+i][y+j] += 5 - abs(j) 
+                            try:
+                                world[x+i][y+j] += 5 - abs(j) 
+                            except:
+                                continue
         fig, ax = plt.subplots()
         ax.set_xticks(np.arange(len([])))
         ax.set_yticks(np.arange(len([])))
@@ -362,5 +365,3 @@ class Analyzer:
             self.update_possession(key)
             self.update_distance(key)
         self.update_parameters()
-
-        

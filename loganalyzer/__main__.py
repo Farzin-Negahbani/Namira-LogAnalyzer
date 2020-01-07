@@ -12,11 +12,11 @@ from loganalyzer.Analyzer import *
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--path", help="Input file path",
+    parser.add_argument("--path", help="Input file path", metavar='<log file without .rcl or .rcg >',
                         required=True, dest='path')
     parser.add_argument(
-        "--save_path", help="Output saving path.", dest='save_path')
-    parser.add_argument("--heatmap", help="Show Heatmap",
+        "--save_path", help="Output saving path.", metavar='<save_path>', dest='save_path')
+    parser.add_argument("--heatmap", help="Show Heatmap of Selected Side", metavar='TEAM_SIDE',
                         dest='heat_map')
     parser.add_argument('--version', action='version', version='1.0.0')
     args = parser.parse_args()

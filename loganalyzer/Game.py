@@ -26,8 +26,8 @@ class Game:
 
     def set_game_result(self):
 
-        self.left_goal, self.left_goal = [int(x) for x in self.parser.data_rcg[-1][0][4][2].split(
-            self.left_team.name+'_')[1].split('-vs-'+self.right_team.name+'_')]
+        self.left_goal, self.right_goal = [int(x.split('_')[-1])
+                                           for x in self.parser.data_rcg[-1][0][4][2].split('-vs-')]
 
     def set_teams_data(self):
         current_play_mode = False
