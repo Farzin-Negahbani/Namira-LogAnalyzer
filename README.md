@@ -68,6 +68,10 @@ This analyzer can report following match facts and information:
 - Kick count
 - Tackle count
 - Say count
+#### Default Regions 
+<p align="center">    
+  <img width="400" height="280" src="https://github.com/Farzin-Negahbani/Namira_LogAnalyzer/blob/master/Img/default_regions.jpeg">
+</p>
 
 ### How to Use
 
