@@ -21,7 +21,7 @@ You just need python 3.x! and setuptools running on any OS.
     sudo apt-get install python3 python3-pip python3-setuptools python3-numpy python3-matplotlib
 
 ### Installation
-    git clone git@github.com:Farzin-Negahbani/Namira_LogAnalyzer.git
+    git clone https://github.com/Farzin-Negahbani/Namira_LogAnalyzer.git
     cd Namira_LogAnalyzer
 Then you can do one of the following methods:
 #### Method 1
