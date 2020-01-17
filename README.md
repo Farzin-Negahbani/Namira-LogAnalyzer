@@ -1,4 +1,4 @@
-# Namira LogAnalyzer
+# Namira Log-Analyzer
 
 Python Script for parsing and analyzing agent2D soccer simulation rcl and rcg log files. This has been used in [NAMIRA TPAS](https://github.com/Farzin-Negahbani/Namira_TPAS),
 a Tournament Planning and Analyzer Software.
