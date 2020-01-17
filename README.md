@@ -25,7 +25,7 @@ You just need python 3.x! and setuptools running on any OS.
     cd Namira_LogAnalyzer
 Then you can do one of the following methods:
 #### Method 1
-    python3 ./setup.py install
+    sudo python3 ./setup.py install
 #### Method 2
     pip install .
 
