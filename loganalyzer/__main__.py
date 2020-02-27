@@ -28,53 +28,51 @@ def parse_args():
 def write_to_file(save_path, analyzer):
     # right TEAM
     right_team_data = {
-        "Right Team": analyzer.game.right_team.name,
-        "True Pass:": analyzer.pass_r,
-        "Intercept:": analyzer.intercept_r,
-        "on_target_shoot:": analyzer.on_target_shoot_r,
-        "off_targ": analyzer.off_target_shoot_r,
-        "Goals :": analyzer.game.right_goal,
-        "Wrong Pass:": analyzer.intercept_l,
-        "Pass in Lenght:": analyzer.pass_in_length_r,
-        "Pass in Width:": analyzer.pass_in_width_r,
-        "Pass Accuracy:": analyzer.pass_accuracy_r,
-        "on_target_shoot:": analyzer.on_target_shoot_r,
-        "off_targ": analyzer.off_target_shoot_r,
-        "Shoot in Lenght": analyzer.shoot_in_length_r,
-        "Shoot in Width": analyzer.shoot_in_width_r,
-        "Shoot Accuracy": analyzer.shoot_accuracy_r,
-        "Possession": analyzer.possession_r,
-        "Stamina": analyzer.used_stamina_agents_r,
+        "rightTeam": analyzer.game.right_team.name,
+        "truePass": analyzer.pass_r,
+        "intercept": analyzer.intercept_r,
+        "onTargetShoot": analyzer.on_target_shoot_r,
+        "offTarget": analyzer.off_target_shoot_r,
+        "goals": analyzer.game.right_goal,
+        "wrongPass": analyzer.intercept_l,
+        "passInLenght": analyzer.pass_in_length_r,
+        "passInWidth": analyzer.pass_in_width_r,
+        "passAccuracy": analyzer.pass_accuracy_r,
+        "onTargetShoot": analyzer.on_target_shoot_r,
+        "shootInLenght": analyzer.shoot_in_length_r,
+        "shootInWidth": analyzer.shoot_in_width_r,
+        "shootAccuracy": analyzer.shoot_accuracy_r,
+        "possession": analyzer.possession_r,
+        "stamina": analyzer.used_stamina_agents_r,
         "moved": analyzer.team_moved_distance_r,
-        "Average Distance 10": analyzer.average_distance_10p_r,
-        "Average Stamina 10": analyzer.average_stamina_10p_r,
-        "Average Stamina Per distance 10": analyzer.av_st_per_dist_10p_r,
-        "Stamina per ": analyzer.used_per_distance_r
+        "averageDistance10": analyzer.average_distance_10p_r,
+        "averageStamina10": analyzer.average_stamina_10p_r,
+        "averageStaminaPerDistance10": analyzer.av_st_per_dist_10p_r,
+        "staminaPer": analyzer.used_per_distance_r
     }
     # left TEAM
     left_team_data = {
-        "Left Team": analyzer.game.left_team.name,
-        "True Pass:": analyzer.pass_l,
-        "Intercept:": analyzer.intercept_l,
-        "on_target_shoot:": analyzer.on_target_shoot_l,
-        "off_targ": analyzer.off_target_shoot_l,
-        "Goals :": analyzer.game.left_goal,
-        "Wrong Pass:": analyzer.intercept_r,
-        "Pass in Lenght:": analyzer.pass_in_length_l,
-        "Pass in Width:": analyzer.pass_in_width_l,
-        "Pass Accuracy:": analyzer.pass_accuracy_l,
-        "on_target_shoot:": analyzer.on_target_shoot_l,
-        "off_targ": analyzer.off_target_shoot_l,
-        "Shoot in Lenght": analyzer.shoot_in_length_l,
-        "Shoot in Width": analyzer.shoot_in_width_l,
-        "Shoot Accuracy": analyzer.shoot_accuracy_l,
-        "Possession": analyzer.possession_l,
-        "Stamina": analyzer.used_stamina_agents_l,
+        "leftTeam": analyzer.game.left_team.name,
+        "truePass": analyzer.pass_l,
+        "Intercept": analyzer.intercept_l,
+        "onTargetShoot": analyzer.on_target_shoot_l,
+        "offTarget": analyzer.off_target_shoot_l,
+        "goals": analyzer.game.left_goal,
+        "wrongPass": analyzer.intercept_r,
+        "passinLenght": analyzer.pass_in_length_l,
+        "passInWidth": analyzer.pass_in_width_l,
+        "passAccuracy": analyzer.pass_accuracy_l,
+        "onTargetShoot": analyzer.on_target_shoot_l,
+        "shootInLenght": analyzer.shoot_in_length_l,
+        "shootInWidth": analyzer.shoot_in_width_l,
+        "shootAccuracy": analyzer.shoot_accuracy_l,
+        "possession": analyzer.possession_l,
+        "stamina": analyzer.used_stamina_agents_l,
         "moved": analyzer.team_moved_distance_l,
-        "Average Distance 10": analyzer.average_distance_10p_l,
-        "Average Stamina 10": analyzer.average_stamina_10p_l,
-        "Average Stamina Per distance 10": analyzer.av_st_per_dist_10p_l,
-        "Stamina per ": analyzer.used_per_distance_r
+        "averageDistance10": analyzer.average_distance_10p_l,
+        "averageStamina10": analyzer.average_stamina_10p_l,
+        "averageStaminaPerDistance10": analyzer.av_st_per_dist_10p_l,
+        "staminaPer ": analyzer.used_per_distance_r
     }
 
     ball_in_region_percentage = {}
@@ -102,10 +100,10 @@ def write_to_file(save_path, analyzer):
     left_team_data['regionData'] = left_team_regions_data
 
     data = {
-        "Game Result": {analyzer.game.left_team.name: analyzer.game.left_goal,
-                        analyzer.game.right_team.name: analyzer.game.right_goal},
-        "right_team": right_team_data,
-        "left_team": left_team_data
+        "gameResult": {analyzer.game.left_team.name: analyzer.game.left_goal,
+                       analyzer.game.right_team.name: analyzer.game.right_goal},
+        "rightTeam": right_team_data,
+        "leftTeam": left_team_data
     }
 
     with open(save_path, 'w') as outfile:
