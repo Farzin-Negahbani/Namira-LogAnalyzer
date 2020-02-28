@@ -18,7 +18,7 @@ def parse_args():
         "--save_path", help="Output saving path.", metavar='<save_path>', dest='save_path')
     parser.add_argument("--heatmap", help="Show Heatmap of Selected Side", metavar='TEAM_SIDE',
                         dest='heat_map')
-    parser.add_argument('--version', action='version', version='1.0.0')
+    parser.add_argument('--version', action='version', version='1.0.1')
     args = parser.parse_args()
     if args.save_path is None:
         args.save_path = args.path+".log.json"
@@ -35,11 +35,11 @@ def write_to_file(save_path, analyzer):
         "offTarget": analyzer.off_target_shoot_r,
         "goals": analyzer.game.right_goal,
         "wrongPass": analyzer.intercept_l,
-        "passInLenght": analyzer.pass_in_length_r,
+        "passInLength": analyzer.pass_in_length_r,
         "passInWidth": analyzer.pass_in_width_r,
         "passAccuracy": analyzer.pass_accuracy_r,
         "onTargetShoot": analyzer.on_target_shoot_r,
-        "shootInLenght": analyzer.shoot_in_length_r,
+        "shootInLength": analyzer.shoot_in_length_r,
         "shootInWidth": analyzer.shoot_in_width_r,
         "shootAccuracy": analyzer.shoot_accuracy_r,
         "possession": analyzer.possession_r,
@@ -48,7 +48,7 @@ def write_to_file(save_path, analyzer):
         "averageDistance10": analyzer.average_distance_10p_r,
         "averageStamina10": analyzer.average_stamina_10p_r,
         "averageStaminaPerDistance10": analyzer.av_st_per_dist_10p_r,
-        "staminaPer": analyzer.used_per_distance_r
+        "staminaPerDistance": analyzer.used_per_distance_r
     }
     # left TEAM
     left_team_data = {
@@ -59,11 +59,11 @@ def write_to_file(save_path, analyzer):
         "offTarget": analyzer.off_target_shoot_l,
         "goals": analyzer.game.left_goal,
         "wrongPass": analyzer.intercept_r,
-        "passinLenght": analyzer.pass_in_length_l,
+        "passinLength": analyzer.pass_in_length_l,
         "passInWidth": analyzer.pass_in_width_l,
         "passAccuracy": analyzer.pass_accuracy_l,
         "onTargetShoot": analyzer.on_target_shoot_l,
-        "shootInLenght": analyzer.shoot_in_length_l,
+        "shootInLength": analyzer.shoot_in_length_l,
         "shootInWidth": analyzer.shoot_in_width_l,
         "shootAccuracy": analyzer.shoot_accuracy_l,
         "possession": analyzer.possession_l,
@@ -72,7 +72,7 @@ def write_to_file(save_path, analyzer):
         "averageDistance10": analyzer.average_distance_10p_l,
         "averageStamina10": analyzer.average_stamina_10p_l,
         "averageStaminaPerDistance10": analyzer.av_st_per_dist_10p_l,
-        "staminaPer ": analyzer.used_per_distance_r
+        "staminaPerDistance": analyzer.used_per_distance_r
     }
 
     ball_in_region_percentage = {}
